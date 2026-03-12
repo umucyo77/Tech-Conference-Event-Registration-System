@@ -3,30 +3,32 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Register() {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    phoneNumber: "",
-    organization: "",
-    ticket: "",
-    dietary: "",
-    comments: ""
-  });
+ const[fullName,setFullName]=useState("")
+    const[email,setEmail]=useState("")
+    const[phoneNumber,setPhoneNumber]=useState("")
+    const[organization,setOrganization]=useState("")
+    const[ticket,setticket]=useState("")
+    const[dietary,setDietary]=useState("")
+    const[comments,setComments]=useState("")
 
+const formData={fullName, email, phoneNumber, organization, ticket,dietary, comments}
   const handleChange = (e) => {
-    setFormData({
+    
+      FormData({
       ...formData,
       [e.target.name]: e.target.value
     });
-  };
-
+    
+  }
   const saveData = () => {
+    
     localStorage.setItem("registrationData", JSON.stringify(formData));
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-gray-100 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-white to-gray-100 p-4">
       <div className="w-full max-w-lg bg-white rounded-xl shadow-xl p-8">
+        <form action="" onSubmit={handleChange}>
         <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center text-gray-800">
           Event Registration
         </h2>
@@ -42,7 +44,8 @@ function Register() {
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
               name="fullName"
               placeholder="John Doe"
-              onChange={handleChange}
+             value={fullName}
+                 onChange={(e)=>setFullName(e.target.value)}
             />
           </div>
 
@@ -56,7 +59,8 @@ function Register() {
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
               name="email"
               placeholder="you@example.com"
-              onChange={handleChange}
+             value={email}
+            onChange={(e)=>setEmail(e.target.value)}
             />
           </div>
         </div>
@@ -72,7 +76,8 @@ function Register() {
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
               name="phoneNumber"
               placeholder="(+250) 78x-xxx-xxx"
-              onChange={handleChange}
+             value={phoneNumber}
+             onChange={(e)=>setPhoneNumber(e.target.value)}
             />
           </div>
 
@@ -85,7 +90,9 @@ function Register() {
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
               name="organization"
               placeholder="Your company or school"
-              onChange={handleChange}
+             value={organization}
+             onChange={(e)=>setOrganization(e.target.value)}
+            
             />
           </div>
         </div>
@@ -98,7 +105,8 @@ function Register() {
             id="ticket"
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition mb-4"
             name="ticket"
-            onChange={handleChange}
+            value={ticket}
+            onChange={(e)=>setticket(e.target.value)}
           >
             <option value="">Select a ticket</option>
             <option>Standard</option>
@@ -116,7 +124,8 @@ function Register() {
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition mb-4"
             name="dietary"
             placeholder="e.g. vegetarian, gluten-free"
-            onChange={handleChange}
+           value={dietary}
+           onChange={(e)=>setDietary(e.target.value)}
           />
         </div>
 
@@ -129,7 +138,8 @@ function Register() {
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition mb-6"
             name="comments"
             placeholder="Anything else we should know"
-            onChange={handleChange}
+           value={comments}
+           onChange={(e)=>setComments(e.target.value)}
           />
         </div>
 
@@ -142,7 +152,9 @@ function Register() {
               Register
             </button>
           </Link>
+          
         </div>
+        </form>
       </div>
     </div>
   );
