@@ -16,7 +16,7 @@ function Confirmation() {
 
         <p className="mb-6 text-gray-700">Your seat has been reserved.</p>
 
-        <Link to="/confirmation">
+        <Link to="/my-registration">
           <button className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition shadow">
             View My Registration
           </button>
