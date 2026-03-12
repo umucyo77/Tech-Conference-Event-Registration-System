@@ -7,6 +7,7 @@ import Information from './components/Information.jsx'
 
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import RegistrationForm from './components/RegistrationForm.jsx'
+import RegistrationReview from './components/RegistrationReview.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,7 +18,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Information />}> </Route>
           <Route path='/register' element={<RegistrationForm />}>Registration FOrm</Route>
-         
+          <Route path='/review' element={<RegistrationReview />}></Route>
+           {/*<Route path='/confirmation' element={<Confirmation />}></Route>
+          <Route path="/my-registration" element={<MyRegistration />} ></Route> */}
         </Routes>
       </BrowserRouter>   
 

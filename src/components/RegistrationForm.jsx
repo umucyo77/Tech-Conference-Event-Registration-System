@@ -1,80 +1,151 @@
 import React from "react";
 import { useState } from "react";
-const RegistrationForm =()=>{
+import { Link } from "react-router-dom";
 
-    const[fullName,setFullName]=useState("")
-    const[email,setEmail]=useState("")
-    const[phoneNumber,setPhoneNumber]=useState("")
-    const [organization,setOrganization]=useState("")
-    const[ticket,setticket]=useState("")
-    const [dietary,setDietary]=useState("")
-    const[comments,setComments]=useState("")
-   
+function Register() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    organization: "",
+    ticket: "",
+    dietary: "",
+    comments: ""
+  });
 
-    
-    const submitForm=((e)=>{
-       
-        
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
     });
+  };
 
-    return(
-        <div >
-            <form onSubmit={submitForm}>
-               
-                 <input 
-                 type="text" 
-                 placeholder="Enter your Name"
-                 value={fullName}
-                 onChange={(e)=>setFullName(e.target.value)}
+  const saveData = () => {
+    localStorage.setItem("registrationData", JSON.stringify(formData));
+  };
 
-                  />
-                   <input 
-                type="email"
-                placeholder="Enter your Email"
-                value={email}
-                 onChange={(e)=>setEmail(e.target.value)}
-                 />
-                  <input 
-                  type="tel" 
-                  placeholder="Enter your Phone number"
-                  value={phoneNumber}
-                 onChange={(e)=>setPhoneNumber(e.target.value)}
-                   />
-                    <input 
-                type="text"
-                placeholder="Enter your Institution Name"
-                value={organization}
-                 onChange={(e)=>setOrganization(e.target.value)}
-                 />
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white to-gray-100 p-4">
+      <div className="w-full max-w-lg bg-white rounded-xl shadow-xl p-8">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center text-gray-800">
+          Event Registration
+        </h2>
 
-                    <input 
-                type="text"
-                placeholder="Enter your ticket"
-                value={ticket}
-                 onChange={(e)=>setticket(e.target.value)}
-                 />
+        {/* first row grid for name/email */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-1">
+              Full Name
+            </label>
+            <input
+              id="fullName"
+              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              name="fullName"
+              placeholder="John Doe"
+              onChange={handleChange}
+            />
+          </div>
 
-                    <input 
-                type="text"
-                placeholder="Enter your Dietary"
-                value={dietary}
-                 onChange={(e)=>setDietary(e.target.value)}
-                 />
-
-                    <input 
-                type="text"
-                placeholder="Enter your Notes"
-                value={comments}
-                 onChange={(e)=>setComments(e.target.value)}
-                 />
-                  <input className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-sky-900"
-                   type="submit" 
-                   value="Register"
-
-                   />
-            </form>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              name="email"
+              placeholder="you@example.com"
+              onChange={handleChange}
+            />
+          </div>
         </div>
-    )
 
+        {/* second row grid for phone/organization */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div>
+            <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">
+              Phone Number
+            </label>
+            <input
+              id="phoneNumber"
+              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              name="phoneNumber"
+              placeholder="(123) 456-7890"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="organization" className="block text-sm font-medium text-gray-700 mb-1">
+              Organization
+            </label>
+            <input
+              id="organization"
+              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
+              name="organization"
+              placeholder="Your company or school"
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <label htmlFor="ticket" className="block text-sm font-medium text-gray-700 mb-1">
+            Ticket Type
+          </label>
+          <select
+            id="ticket"
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition mb-4"
+            name="ticket"
+            onChange={handleChange}
+          >
+            <option value="">Select a ticket</option>
+            <option>Standard</option>
+            <option>VIP</option>
+            <option>Student</option>
+          </select>
+        </div>
+
+        <div className="mt-4">
+          <label htmlFor="dietary" className="block text-sm font-medium text-gray-700 mb-1">
+            Dietary Requirements
+          </label>
+          <input
+            id="dietary"
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition mb-4"
+            name="dietary"
+            placeholder="e.g. vegetarian, gluten-free"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="mt-4">
+          <label htmlFor="comments" className="block text-sm font-medium text-gray-700 mb-1">
+            Additional Notes
+          </label>
+          <textarea
+            id="comments"
+            className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition mb-6"
+            name="comments"
+            placeholder="Anything else we should know"
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="text-right">
+          <Link to="/review">
+            <button
+              className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+              onClick={saveData}
+            >
+              Register
+            </button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 }
-export default RegistrationForm;
+
+export default Register;
