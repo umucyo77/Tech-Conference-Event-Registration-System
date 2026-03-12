@@ -67,7 +67,7 @@ function Register() {
             <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">
               Phone Number
             </label>
-            <Phoneinput
+            <input
               id="phoneNumber"
               className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
               name="phoneNumber"
